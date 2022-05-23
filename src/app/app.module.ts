@@ -8,6 +8,8 @@ import {MatCardModule} from '@angular/material/card';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {MatInputModule} from '@angular/material/input';
+import { ReactiveFormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +21,9 @@ import {MatInputModule} from '@angular/material/input';
     MatCardModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
-    MatInputModule
+    MatInputModule,
+    ReactiveFormsModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
