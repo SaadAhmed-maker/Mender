@@ -1,0 +1,71 @@
+.mat-card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    height: 60%;
+    margin-top: 10%;
+}
+
+    .signhere{
+    display: flex;
+    -ms-flex-align: start;
+    padding: 0%;
+    margin: 0%;
+    border: 2px solid black;
+
+}
+
+
+.anim{
+    width: 50%;
+}
+
+
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+
+  .logo{
+      display: flex;
+      border: 3px dotted blue ;
+      align-self:flex-end;
+      height: 90px;
+      width: 125px;
+  }
+
+
+  .mt-6{
+    margin-top: 10em;
+  }
+
+  
+  .ml-6{
+    margin-left: 29em;
+      }
+
+   
+
+    .HRMS img{
+        border-radius: 10%;
+         
+    }
+
+   .container{
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       height: 100vh;
+    //    flex-wrap: wrap;
+       
+   }
+
+   .credentials{
+       width: 40%;
+   }
