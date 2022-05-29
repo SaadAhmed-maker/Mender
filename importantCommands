@@ -1,0 +1,84 @@
+
+Steps in api integration:
+
+1)ng generate service <<api>> : generate a service ,we will configure the HttpClient in here.
+
+2)import HttpClientModule in app.module.ts
+			import { HttpClientModule } from '@angular/common/http';
+					@NgModule({
+			declarations: [AppComponent],
+			entryComponents: [],
+			imports: [
+			HttpClientModule,
+			],
+			})
+			export class AppModule{}
+			
+			it should look like this after editing.		
+
+3) Now inject HttpClient inside service file – src/app/api.service.ts		
+
+		import { Injectable } from '@angular/core';
+		import { HttpClient } from '@angular/common/http';
+		@Injectable({
+		providedIn: 'root'
+		})
+		export class ApiService {
+		constructor(private httpClient: HttpClient) { }
+		}
+		
+4)	add a method to get all data from api
+
+
+		public getCountry(){
+    return this.httpClient.get(‘https://restcountries.eu/rest/v2/all’);
+	}
+	
+	
+5) Now create a component jaha API ka data display karna hai : ng g c <<countrylist>>
+
+
+6)add routing in app-routing.module.ts
+		1.import <<paste the name of class from countrylist.component.ts file >>
+		
+		2.niche kuch aisa
+		const routes: Routes = [{
+		path:'countrylist',component:CountrylistComponent
+		} ];
+		
+		
+7) import api  service in component.ts file , in this case countrylist.component.ts.
+		1.import { Component, OnInit } from '@angular/core';
+		   import { ApiService } from '../api.service';  <----------
+		
+		2.export class CountryListComponent implements OnInit {
+			constructor(private apiService: ApiService) { } <----------
+		}	
+		
+		
+8)Next, we will define a variable and a method that will call the service and get the data.
+
+	export class CountryListComponent implements OnInit {
+  countryList;
+  constructor(private apiService: ApiService) { }
+  ngOnInit() {
+    this.apiService.getCountry().subscribe((data)=>{
+      console.log(data);
+      this.contryList = data;
+    });
+  }
+}
+
+9)		<div *ngFor="let country of countryList">
+		<h3>CountryName</h3><span>{{country.name}}</span>
+		<h3>Capital</h3><span>{{country.capital}}</span>
+		</div>
+			
+			
+			
+			
+			
+			
+			
+			
+  
