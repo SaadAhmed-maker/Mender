@@ -1,5 +1,5 @@
 
-Steps in api integration:
+                   <--------------------------Steps in api integration:------------------------------>
 
 1)ng generate service <<api>> : generate a service ,we will configure the HttpClient in here.
 
@@ -76,9 +76,92 @@ Steps in api integration:
 			
 			
 			
-			
-			
-			
+			<-----------------------------Diabos Credentials------------------------------------------>
+      
+      -------------------------------GIT COMMANDS---------------------------
+
+git init
+git status
+git branch <<name>>
+git checkout <<vikas>>
+git pull origin <<dev>>
+
+login port : ng serve 4200// default always
+D3.0-DA : ng serve --port 4201// always
+ 
+login credentials : username : amich
+					password : Test@1234
+
+
+
+
+
+
+-----------------------------Diabos Project Standards---------------------------
+
+1)ng g m <<testmodule>> --routing // 2 files created (routing module.ts and module.ts)
+
+2)then in this module do ng g c <<tableprac>>
+
+3)go in routing.module.ts and set routes : const routes: Routes = [
+											  {path:'', component:TablepracComponent}
+											];
+
+4)go in app-routing.module.ts and do this : {
+													path: "test",
+													loadChildren: () =>	import('./testmodule/testmodule.module').then((m) => m.TestmoduleModule)
+												}
+
+
+<------------------------------------Data Transfer Between Components----------------------------->
+      #Parent To Child  
+     
+     AppComponent.ts is Parent Class here
+     
+1)    export class AppComponent {
+  title = 'jusforprac';
+
+  data={ name:'saad',
+          country:'Uganda',
+          destination:'Jannat'
+          }
+}
+
+2)  AppComponent.html
+    <app-child-c [hero]="data"></app-child-c
+    
+    
+ 3) child.ts
+    
+    
+    import { Component, OnInit, Input } from '@angular/core';
+
+@Component({
+  selector: 'app-child-c',
+  templateUrl: './child-c.component.html',
+  styleUrls: ['./child-c.component.scss']
+})
+export class ChildCComponent implements OnInit {
+  @Input() hero: any;
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
+}
+
+    
+ 4)   child.html
+    
+    <table class="table">
+<tr><h2>{{hero.name}}</h2>
+<th>{{hero.country}}</th>
+<th>{{hero.destination}}</th>
+</tr>
+</table>
+
+
+
 			
 			
   
