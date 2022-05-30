@@ -1,5 +1,5 @@
 
-<div class="container">
+<!-- <div class="container">
     
     <div class="HRMS">
         <img src="/assets/Images/HRcycle.jpg" width="50%" alt="">
@@ -20,8 +20,6 @@
               Please enter your email:
           </span>
 
-          
-
         </div>
         
       </div>
@@ -34,8 +32,42 @@
       </div>
     </div>
     
-    
-
     <button type="submit" class="btn btn-primary">Sign in</button>
   </form>
-</div>
+</div> -->
+
+
+
+<mat-card class="maincard" >
+  <form [formGroup]="credentials" class="credentials" >
+  <div> <img src="assets/Images/cat-shadow.png" alt=""></div>
+    <div class="lazycat">
+        <h1>Lazy Cat </h1>
+    <form class="loginform">
+      <!-- <mat-label>Enter User Name </mat-label> -->
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>User Name</mat-label>
+        <input matInput placeholder="Enter user name" formControlName="user_name" [ngClass]="{ 'is-invalid': submitted && f['name'].errors}" >
+        <!-- <mat-error class="text-danger" *ngIf="credentials.controls['user_name'].dirty && credentials.hasError('required','user_name')">
+          *Full-Name
+        </mat-error> -->
+      </mat-form-field>
+    
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="Enter user name" formControlName="email" value="">
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Telephone</mat-label>
+        <span matPrefix>+91 &nbsp;</span>
+        <input type="number" formControlName="mob_no" minlength="10" maxlength="10" matInput placeholder="Ex-9521147895">
+        <!-- <mat-icon matSuffix>mode_edit</mat-icon> -->
+      </mat-form-field>
+      <button mat-raised-button color="primary">Primary</button>  
+    </form>
+  </div>
+</form>
+
+
+</mat-card>
