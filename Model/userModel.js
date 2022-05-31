@@ -16,3 +16,6 @@ userSchema.methods.generateJWT =  function(){
         number: this.number
     },process.env.JWT_SECRET_KEY,{expiresIn:"7d"})
 }
+
+
+module.exports.User = model('User', userSchema);

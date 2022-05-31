@@ -2,10 +2,13 @@
 // const url = 'mongodb://localhost:27017';
 // const database = 'mydb';
 // const client = new MongoClient(url);
+
 const express = require('express');
 const app = express();
+const userRouter = require('./.vscode/Routers/userRouter');
 app.use(express.json());
 
+app.use('/api/user/', userRouter);
 module.exports = app
 
 
