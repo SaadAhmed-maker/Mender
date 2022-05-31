@@ -1,0 +1,62 @@
+ 1) After creation of project install following packages which are used in SMS OTP validation: 
+              npm i axios bcrypt dotenv express jsonwebtoken lodash mongoose otp-generator.
+ 
+ 2) create a file .emv  // Environment Variable(From here db URL token is passed in server.js.) - Used to ensure security.
+ 
+  MONGODB_URL_LOCAL ='mongodb://localhost:27017/mydb'
+PORT = 3001
+
+JWT_SERCRET_KEY = HJDUDHSIDeasjdlkfsdasagdfdh
+  
+3) create file app.js
+
+  const express = require('express');
+const app = express();          //Expres function is top-level function
+app.use(express.json());
+
+module.exports = app
+
+4)create file server.js         //  here we pass db-URL-connection 
+
+require('dotenv/config');
+const mongoose = require('mongoose');
+const app = require('./app');
+
+mongoose.connect('mongodb://localhost:27017/mydb')
+.then(() => console.log("Connected to MongoDB"))
+.catch((err) => console.log("MongoDB Connection Failed"));
+
+const port = process.env.PORT || 3001
+
+app.listen(port, () => {
+    console.log('App running on port: ${port}!')
+})
+
+5) Create file yserModel.js
+
+const {Schema, model} = require('mongoose');
+const jwt = require('jsonwebtoken');
+
+const userSchema = Schema({
+    number:{
+        type: String,
+        required:true
+    }
+},{ timestamps: true});
+
+
+
+6)userSchema.methods.generateJWT =  function(){
+    const token = jwt.sign({
+        _id : this._id,                           <=============This is required to store OTP string 
+        number: this.number
+    },process.env.JWT_SECRET_KEY,{expiresIn:"7d"})
+}
+module.exports.User = model('User', userSchema);
+
+7)
+
+
+
+
+              
