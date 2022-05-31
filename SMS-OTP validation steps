@@ -32,7 +32,7 @@ app.listen(port, () => {
     console.log('App running on port: ${port}!')
 })
 
-5) Create file yserModel.js
+5) Create file userModel.js in Model Folder
 
 const {Schema, model} = require('mongoose');
 const jwt = require('jsonwebtoken');
@@ -44,9 +44,7 @@ const userSchema = Schema({
     }
 },{ timestamps: true});
 
-
-
-6)userSchema.methods.generateJWT =  function(){
+userSchema.methods.generateJWT =  function(){
     const token = jwt.sign({
         _id : this._id,                           <=============This is required to store OTP string 
         number: this.number
@@ -54,7 +52,54 @@ const userSchema = Schema({
 }
 module.exports.User = model('User', userSchema);
 
-7)
+6)Create otpModel.js
+
+  const {Schema,model} = require("mongoose");
+
+module.exports.Otp = model('Otp', Schema({
+    number : {
+        type:String,
+        required:true
+    },
+
+    otp:{
+        type:String,
+        required :true
+    },
+
+    createAt:{ type: Date, default:Date.now, index:{expires:300}}    //<======OTP Expires in 5 mins
+
+}, {timestamps:true}))
+
+7) Create a Controllers Folder and inside that create userController.js file
+
+const bcrypt = require("bcrypt");
+const _ = require("lodash");
+const axios = require("axios");
+const otpGenerator = require("otp-generator");
+const {User} = require('../../Model/userModel');
+const {otp} = require("../../Model/otpModel");
+
+module.exports.signUp = async (req,res) => {
+
+}
+
+module.exports.verifyOtp = async(req , res) => {
+    
+}
+
+8)Create a Routers Folder and create file userRouters.js          <======For routing the request
+
+const router = require('express').Router();
+const { signUp, verifyOtp } = require('../Controllers/userController');
+
+router.route('signup').post(signUp);
+router.route('/signup/verify').post(verifyOtp);
+
+module.exports = router;
+
+
+
 
 
 
